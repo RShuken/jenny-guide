@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #faf7f4;
+  --card: #ffffff;
+  --primary: #5b7f72;
+  --primary-light: #e8f0ec;
+  --primary-dark: #3d5a4f;
+  --accent: #d4836b;
+  --accent-light: #f5e6e0;
+  --text: #2c3530;
+  --text-light: #6b7c75;
+  --border: #e5dfd9;
+  --shadow: 0 2px 16px rgba(44,53,48,0.06);
+  --shadow-lg: 0 8px 32px rgba(44,53,48,0.1);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── PASSWORD SCREEN ─── */
+#password-screen {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #f5efe9, #e8f0ec);
+  padding: 24px;
+}
+
+.pw-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 48px 40px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+
+.pw-card .lock-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--primary-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 24px;
+}
+
+.pw-card h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.pw-card p {
+  color: var(--text-light);
+  font-size: 14px;
+  margin-bottom: 28px;
+}
+
+.pw-input-wrap {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.pw-input-wrap input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 18px;
+  text-align: center;
+  letter-spacing: 8px;
+  transition: border-color var(--transition);
+  outline: none;
+  background: var(--bg);
+}
+
+.pw-input-wrap input:focus {
+  border-color: var(--primary);
+}
+
+.pw-input-wrap input.error {
+  border-color: var(--accent);
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+.pw-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition), transform 0.15s;
+}
+
+.pw-btn:hover { background: var(--primary-dark); }
+.pw-btn:active { transform: scale(0.98); }
+
+.pw-error-msg {
+  color: var(--accent);
+  font-size: 13px;
+  margin-top: 12px;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.pw-error-msg.visible { opacity: 1; }
+
+/* ─── MAIN CONTENT ─── */
+#main-content {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+#main-content.visible {
+  display: block;
+  opacity: 1;
+}
+
+/* ─── HERO ─── */
+.hero {
+  background: linear-gradient(145deg, #f5efe9, #e8f0ec);
+  padding: 80px 24px 60px;
+  text-align: center;
+}
+
+.hero-inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 500;
+  margin-bottom: 16px;
+  line-height: 1.25;
+}
+
+.hero .subtitle {
+  color: var(--text-light);
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* ─── SECTIONS ─── */
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+section {
+  padding: 56px 0;
+}
+
+section + section {
+  border-top: 1px solid var(--border);
+}
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.section-label .dot {
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+}
+
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 4vw, 30px);
+  font-weight: 500;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 28px 0 12px;
+}
+
+p { margin-bottom: 16px; }
+
+/* ─── CARDS ─── */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px;
+  margin: 20px 0;
+}
+
+.card.highlight {
+  border-left: 4px solid var(--primary);
+}
+
+.card.good-news {
+  background: var(--primary-light);
+  border-left: 4px solid var(--primary);
+}
+
+.card.good-news .card-label {
+  color: var(--primary-dark);
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.card.warning {
+  background: var(--accent-light);
+  border-left: 4px solid var(--accent);
+}
+
+/* ─── COMPARISON TABLE ─── */
+.compare-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 20px 0;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.compare-table th {
+  background: var(--primary);
+  color: white;
+  padding: 14px 18px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.compare-table td {
+  padding: 14px 18px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.compare-table tr:last-child td {
+  border-bottom: none;
+}
+
+.compare-table .label-good {
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.compare-table .label-caution {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ─── LIST STYLES ─── */
+.styled-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+}
+
+.styled-list li {
+  padding: 10px 0 10px 28px;
+  position: relative;
+  line-height: 1.6;
+}
+
+.styled-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 18px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary-light);
+  border: 2px solid var(--primary);
+}
+
+.numbered-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: step;
+  margin: 16px 0;
+}
+
+.numbered-list li {
+  padding: 12px 0 12px 44px;
+  position: relative;
+  counter-increment: step;
+}
+
+.numbered-list li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 28px;
+  height: 28px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ─── CALLOUT ─── */
+.callout {
+  background: var(--primary-light);
+  border-radius: var(--radius-sm);
+  padding: 20px 24px;
+  margin: 24px 0;
+  font-size: 15px;
+}
+
+.callout strong { color: var(--primary-dark); }
+
+/* ─── QUESTIONNAIRE ─── */
+#questionnaire {
+  background: linear-gradient(145deg, #f5efe9, #e8f0ec);
+  padding: 56px 24px;
+}
+
+.q-header {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 40px;
+}
+
+.q-header h2 { margin-bottom: 12px; }
+.q-header p { color: var(--text-light); }
+
+.progress-bar-wrap {
+  max-width: 560px;
+  margin: 0 auto 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(91,127,114,0.15);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 3px;
+  transition: width var(--transition);
+  width: 0%;
+}
+
+.progress-text {
+  font-size: 13px;
+  color: var(--text-light);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.q-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 36px 32px;
+  max-width: 560px;
+  margin: 0 auto;
+  display: none;
+}
+
+.q-card.active { display: block; animation: fadeUp 0.35s ease; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.q-card .q-number {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+}
+
+.q-card .q-question {
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.q-card .q-why {
+  color: var(--text-light);
+  font-size: 14px;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+/* ─── FORM ELEMENTS ─── */
+.form-input, .form-textarea, .form-select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 15px;
+  background: var(--bg);
+  color: var(--text);
+  transition: border-color var(--transition);
+  outline: none;
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  border-color: var(--primary);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7c75' fill='none' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.radio-option:hover { border-color: var(--primary); background: var(--primary-light); }
+.radio-option.selected { border-color: var(--primary); background: var(--primary-light); }
+
+.radio-option input { display: none; }
+
+.radio-dot {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  transition: border-color var(--transition);
+}
+
+.radio-option.selected .radio-dot {
+  border-color: var(--primary);
+}
+
+.radio-option.selected .radio-dot::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 10px; height: 10px;
+  background: var(--primary);
+  border-radius: 50%;
+}
+
+.radio-option span { font-size: 15px; }
+
+.conditional-field {
+  display: none;
+  margin-top: 14px;
+  animation: fadeUp 0.3s ease;
+}
+
+.conditional-field.visible { display: block; }
+
+.q-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 28px;
+  gap: 12px;
+}
+
+.btn {
+  padding: 12px 28px;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  border: none;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover { background: var(--primary-dark); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-light);
+  border: 2px solid var(--border);
+}
+
+.btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
+
+.btn-accent {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-accent:hover { background: #c2745e; }
+
+/* ─── RESULTS / SHARE ─── */
+#results-card {
+  display: none;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 40px 32px;
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#results-card.active { display: block; animation: fadeUp 0.35s ease; }
+
+#results-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  margin: 0 0 12px;
+}
+
+#results-card p {
+  color: var(--text-light);
+  font-size: 15px;
+  margin-bottom: 28px;
+}
+
+.share-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.share-buttons .btn { width: 100%; padding: 16px; font-size: 16px; }
+
+.copied-toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--primary-dark);
+  color: white;
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 1000;
+  box-shadow: var(--shadow-lg);
+}
+
+.copied-toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  text-align: center;
+  padding: 40px 24px;
+  color: var(--text-light);
+  font-size: 13px;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 600px) {
+  .pw-card { padding: 36px 24px; }
+  .hero { padding: 56px 20px 44px; }
+  section { padding: 40px 0; }
+  .q-card { padding: 28px 20px; }
+  #results-card { padding: 32px 20px; }
+  .compare-table th, .compare-table td { padding: 10px 12px; font-size: 13px; }
+  .q-nav { flex-direction: column-reverse; }
+  .q-nav .btn { width: 100%; text-align: center; }
+}
+
+/* ─── PROMPT SECTION ─── */
+.prompt-box {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  margin: 16px 0;
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  max-height: 300px;
+  overflow-y: auto;
+  color: var(--text);
+}
+
+.copy-prompt-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ PASSWORD SCREEN ═══════════════ -->
+<div id="password-screen">
+  <div class="pw-card">
+    <div class="lock-icon">&#128274;</div>
+    <h1>Private Guide</h1>
+    <p>This was made for you. Enter the code you were given.</p>
+    <div class="pw-input-wrap">
+      <input type="password" id="pw-input" maxlength="4" inputmode="numeric" pattern="[0-9]*" placeholder="----" autocomplete="off">
+    </div>
+    <button class="pw-btn" onclick="checkPassword()">Open</button>
+    <div class="pw-error-msg" id="pw-error">That's not the right code. Try again.</div>
+  </div>
+</div>
+
+<!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+<div id="main-content">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <h1>A Friend Put This Together for You</h1>
+      <p class="subtitle">This page walks through what's likely to happen with your business and your house during the divorce. It also has some questions to answer so we can help you prepare. Take your time.</p>
+    </div>
+  </div>
+
+  <!-- SECTION: THE GOOD NEWS -->
+  <section>
+    <div class="container">
+      <div class="section-label"><span class="dot"></span> Start Here</div>
+      <h2>The Good News About Your Business</h2>
+      <p>You might be worried that you'll have to sell your business or give up part of it. Here's the key thing to understand:</p>
+
+      <div class="card good-news">
+        <div class="card-label">Key Concept</div>
+        <p style="margin-bottom:0"><strong>Your business is almost entirely "personal goodwill"</strong> &mdash; which means in Colorado, it likely cannot be divided or given a dollar value for the divorce. Here's why courts see it that way:</p>
+      </div>
+
+      <ul class="styled-list">
+        <li>The business is named after you &mdash; it's <em>your</em> name and reputation</li>
+        <li>You take all the photos yourself</li>
+        <li>You do all the editing yourself</li>
+        <li>Your clients are hiring <em>you</em>, not a transferable brand</li>
+        <li>If you stopped working tomorrow, there'd be no business to sell</li>
+      </ul>
+
+      <p>Courts split the value of a business into two categories. Here's what they are and why the distinction matters so much in your case:</p>
+
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Type of Value</th>
+            <th>What It Means</th>
+            <th>Can It Be Split?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Enterprise Goodwill</strong></td>
+            <td>Value that exists without the owner &mdash; brand systems, employee teams, patents, recurring contracts</td>
+            <td><span class="label-caution">Yes &mdash; marital asset</span></td>
+          </tr>
+          <tr>
+            <td><strong>Personal Goodwill</strong></td>
+            <td>Value tied to <em>you</em> as a person &mdash; your reputation, your relationships, your skill</td>
+            <td><span class="label-good">No &mdash; not divisible in CO</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <strong>What this means for you:</strong> A wedding photography business where the owner is the sole photographer, editor, and the business bears their name is the textbook case for personal goodwill. The actual <em>property</em> that could be divided is just the tangible stuff &mdash; camera equipment, maybe a computer &mdash; and that's it.
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: THE $83K QUESTION -->
+  <section>
+    <div class="container">
+      <div class="section-label"><span class="dot"></span> Your Income</div>
+      <h2>What About the $83,000?</h2>
+      <p>Your annual profit matters, but not the way you might think. It doesn't make the business "worth" more for property division. Instead, it factors into <strong>spousal maintenance</strong> (what some states call alimony).</p>
+
+      <div class="card highlight">
+        <h3 style="margin-top:0">How Colorado Calculates Maintenance</h3>
+        <p>Colorado uses a formula based on both spouses' incomes:</p>
+        <p><strong>40% of the higher earner's gross income</strong> minus <strong>50% of the lower earner's gross income</strong></p>
+        <p>How long it lasts depends on how long you were married. Marriages under 3 years may get no maintenance. Longer marriages get more months.</p>
+        <p style="margin-bottom:0">This formula applies whether you're the higher or lower earner. That's one of the questions below.</p>
+      </div>
+
+      <div class="callout">
+        <strong>Important:</strong> The $83K represents <em>your labor</em>. You earn it by showing up, shooting, and editing. It's not passive income from an asset &mdash; it's your paycheck. A good attorney will make sure the court sees it that way.
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: THE HOUSE -->
+  <section>
+    <div class="container">
+      <div class="section-label"><span class="dot"></span> The House</div>
+      <h2>What Happens to the House</h2>
+      <p>If you bought the house together during the marriage, it's a <strong>marital asset</strong> &mdash; regardless of whose name is on the deed. Colorado divides marital property "equitably," which means fairly but not necessarily 50/50.</p>
+
+      <h3>Your Options</h3>
+      <ol class="numbered-list">
+        <li><strong>Sell it and split the equity.</strong> Most straightforward. After paying off the mortgage and closing costs, you each get a share.</li>
+        <li><strong>One person buys the other out.</strong> This means refinancing the mortgage into one name and paying the other person their share of equity. Requires qualifying for the mortgage alone.</li>
+        <li><strong>Trade assets.</strong> One person keeps the house in exchange for giving up their claim on other assets (retirement accounts, savings, etc.).</li>
+      </ol>
+
+      <div class="card warning">
+        <p style="margin-bottom:0"><strong>The house is probably the bigger financial question</strong> in this divorce &mdash; not the business. That's where real equity is, and where negotiation matters most. This is why the questions below ask about the house value and mortgage.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: COLORADO LAW -->
+  <section>
+    <div class="container">
+      <div class="section-label"><span class="dot"></span> Colorado Law</div>
+      <h2>How Colorado Handles This</h2>
+
+      <div class="card">
+        <h3 style="margin-top:0">Equitable Distribution State</h3>
+        <p>Colorado is <strong>not</strong> a 50/50 community property state. It's an "equitable distribution" state. The court divides things <em>fairly</em>, considering factors like:</p>
+        <ul class="styled-list">
+          <li>Each person's financial situation after the divorce</li>
+          <li>How much each person contributed to acquiring assets</li>
+          <li>Whether one person was a homemaker (this counts as contribution)</li>
+          <li>Whether either person wasted or hid marital assets</li>
+          <li>Whether there are children and who they'll live with</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-top:0">No Prenup &mdash; What That Means</h3>
+        <p>Without a prenup, everything acquired during the marriage is presumed marital property. Things you owned <em>before</em> the marriage are "separate property" &mdash; but any increase in their value during the marriage could be considered marital.</p>
+        <p style="margin-bottom:0">If you started the business before getting married, the original value at the time of marriage is yours. Only the growth during the marriage is potentially divisible.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: NEXT STEPS -->
+  <section>
+    <div class="container">
+      <div class="section-label"><span class="dot"></span> What To Do</div>
+      <h2>Recommended Next Steps</h2>
+
+      <ol class="numbered-list">
+        <li><strong>Answer the questions below.</strong> They'll help build a clearer picture of your situation so you can have a more productive first meeting with a lawyer.</li>
+        <li><strong>Consult a Colorado family law attorney.</strong> Many offer a free 30-minute consultation. Ask specifically: <em>"I own a solo photography LLC with $83K annual profit, named after me, where I do all the work. How would a court value this?"</em></li>
+        <li><strong>Don't move money around or make big financial changes.</strong> Courts look unfavorably on either spouse who appears to be hiding or spending down assets.</li>
+        <li><strong>Gather financial documents.</strong> Tax returns (last 3 years), bank statements, mortgage statement, retirement account statements, business profit &amp; loss statements.</li>
+      </ol>
+
+      <div class="callout">
+        <strong>Use AI to keep researching.</strong> Below the questionnaire there's a prompt you can paste into <a href="https://chatgpt.com" target="_blank" style="color: var(--primary)">ChatGPT</a> or <a href="https://claude.ai" target="_blank" style="color: var(--primary)">Claude</a> (both free) that already includes your situation. It'll help you ask the right follow-up questions.
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ QUESTIONNAIRE ═══════════════ -->
+  <div id="questionnaire">
+    <div class="q-header">
+      <div class="section-label"><span class="dot"></span> Your Turn</div>
+      <h2>A Few Questions</h2>
+      <p>These will help us understand your situation better. Your answers are saved on your device as you go &mdash; you won't lose them if you close the page. At the end you can share them.</p>
+    </div>
+
+    <div class="progress-bar-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="progress-text" id="progress-text">0 / 13</div>
+    </div>
+
+    <!-- Q1: Marriage date -->
+    <div class="q-card" data-q="1">
+      <div class="q-number">Question 1 of 13</div>
+      <div class="q-question">What year did you get married?</div>
+      <div class="q-why">This determines how much of the business's value (if any) was built during the marriage, and affects how long spousal maintenance could last.</div>
+      <input class="form-input" type="number" id="q1" placeholder="e.g. 2018" min="1970" max="2026" data-key="marriage_year">
+      <div class="q-nav">
+        <span></span>
+        <button class="btn btn-primary" onclick="nextQ(1)">Next</button>
+      </div>
+    </div>
+
+    <!-- Q2: Business start vs marriage -->
+    <div class="q-card" data-q="2">
+      <div class="q-number">Question 2 of 13</div>
+      <div class="q-question">Did you start your photography business before or during the marriage?</div>
+      <div class="q-why">If the business existed before the marriage, only the increase in value during the marriage could be considered marital property. The original value stays yours.</div>
+      <div class="radio-group" data-key="business_timing">
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="q2" value="before">
+          <div class="radio-dot"></div>
+          <span>Before the marriage</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="q2" value="during">
+          <div class="radio-dot"></div>
+          <span>During the marriage</span>
+        </label>
+      </div>
+      <div class="q-nav">
+        <button class="btn btn-secondary" onclick="prevQ(2)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(2)">Next</button>
+      </div>
+    </div>
+
+    <!-- Q3: Spouse help -->
+    <div class="q-card" data-q="3">
+      <div class="q-number">Question 3 of 13</div>
+      <div class="q-question">Did your spouse ever help with the business?</div>
+      <div class="q-why">Even informal help (carrying gear, bookkeeping, social media, driving to venues) can create a claim to business value. Be thorough here.</div>
+      <div class="radio-group" data-key="spouse_helped">
+        <label class="radio-option" onclick="selectRadio(this); showConditional('q3-details', this, 'yes')">
+          <input type="radio" name="q3" value="yes">
+          <div class="radio-dot"></div>
+          <span>Yes, they helped in some way</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this); showConditional('q3-details', this, 'yes')">
+          <input type="radio" name="q3" value="no">
+          <div class="radio-dot"></div>
+          <span>No, they were not involved at all</span>
+        </label>
+      </div>
+      <div class="conditional-field" id="q3-details">
+        <textarea class="form-textarea" id="q3-text" placeholder="Describe what they did (e.g., helped with accounting, drove you to venues, watched kids so you could edit, posted on social media...)" data-key="spouse_help_details"></textarea>
+      </div>
+      <div class="q-nav">
+        <button class="btn btn-secondary" onclick="prevQ(3)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(3)">Next</button>
+      </div>
+    </div>
+
+    <!-- Q4: Marital funds -->
+    <div class="q-card" data-q="4">
+      <div class="q-number">Question 4 of 13</div>
+      <div class="q-question">Did money from the marriage fund the business?</div>
+      <div class="q-why">If joint savings or your spouse's income paid for equipment, marketing, education, or business expenses, that could strengthen a claim to part of the business value.</div>
+      <div class="radio-group" data-key="marital_funds_used">
+        <label class="radio-option" onclick="selectRadio(this); showConditional('q4-details', this, 'yes')">
+          <input type="radio" name="q4" value="yes">
+          <div class="radio-dot"></div>
+          <span>Yes</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this); showConditional('q4-details', this, 'yes')">
+          <input type="radio" name="q4" value="no">
+          <div class="radio-dot"></div>
+          <span>No &mdash; it was self-funded from business income</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this); showConditional('q4-details', this, 'yes')">
+          <input type="radio" name="q4" value="unsure">
+          <div class="radio-dot"></div>
+          <span>I'm not sure</span>
+        </label>
+      </div>
+      <div class="conditional-field" id="q4-details">
+        <textarea class="form-textarea" id="q4-text" placeholder="What did the money go toward? (e.g., camera body, lenses, a workshop, website redesign...)" data-key="marital_funds_details"></textarea>
+      </div>
+      <div class="q-nav">
+        <button class="btn btn-secondary" onclick="prevQ(4)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(4)">Next</button>
+      </div>
+    </div>
+
+    <!-- Q5: Spouse career sacrifice -->
+    <div class="q-card" data-q="5">
+      <div class="q-number">Question 5 of 13</div>
+      <div class="q-question">Did your spouse sacrifice career opportunities to support your work?</div>
+      <div class="q-why">For example, if they handled all household duties on weekends so you could shoot weddings, or moved for your business, that's a factor courts consider.</div>
+      <div class="radio-group" data-key="spouse_sacrifice">
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="q5" value="yes">
+          <div class="radio-dot"></div>
+          <span>Yes</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="q5" value="no">
+          <div class="radio-dot"></div>
+          <span>No</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="q5" value="maybe">
+          <div class="radio-dot"></div>
+          <span>Somewhat / I'm not sure</span>
+        </label>
+      </div>
+      <div class="q-nav">
+        <button class="btn btn-secondary" onclick="prevQ(5)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(5)">Next</button>
+      </div>
+    </div>
+
+    <!-- Q6: Spouse income -->
+    <div class="q-card" data-q="6">
+      <div class="q-number">Question 6 of 13</div>
+      <div class="q-question">What is your spouse's approximate annual income?</div>
+      <div class="q-why">This determines the direction and amount of spousal maintenance. If they earn more than you, you might receive support. If less, you might pay it.</div>
+      <select class="form-select" id="q6" data-key="spouse_income">
+        <option value="">Select a range...</option>
+        <option value="0-25k">$0 &ndash; $25,000</option>
+        <option value="25-50k">$25,000 &ndash; $50,000</option>
+        <option value="50-75k">$50,000 &ndash; $75,000</option>
+        <option value="75-100k">$75,000 &ndash; $100,000</option>
+        <option value="100-150k">$100,000 &ndash; $150,000</option>
+        <option value="150k+">Over $150,000</option>
+        <option value="unemployed">Currently unemployed</option>
+        <option value="unknown">I don't know</option>
+      </select>
+      <div class="q-nav">
+        <button class="btn btn-secondary" onclick="prevQ(6)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(6)">Next</button>
+      </div>
+    </div>
+
+    <!-- Q7: House value -->
+    <div class="q-card" data-q="7">
+      <div class="q-number">Question 7 of 13</div>
+      <div class="q-question">What's the house worth, and what do you owe?</div>
+      <div class="q-why">The equity (value minus mortgage) is what gets divided. This is often the single biggest asset in a divorce.</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <input class="form-input" type="text" id="q7-value" placeholder="Approximate home value (e.g. $550,000)" data-key="house_value">
+        <input class="form-input" type="text" id="q7-owed" placeholder="Approximate mortgage balance (e.g. $320,000)" data-key="mortgage_owed">
+      </div>
+      <div class="q-nav">
+        <button class="btn btn-secondary" onclick="prevQ(7)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(7)">Next</button>
+      </div>
+    </div>
+
+    <!-- Q8: House title -->
+    <div class="q-card" data-q="8">
+      <div class="q-number">Question 8 of 13</div>
+      <div class="q-question">Whose name is on the mortgage and deed?</div>
+      <div class="q-why">In Colorado this doesn't determine who "owns" it in divorce &mdash; marital property is marital property. But it matters for refinancing if one person wants to keep it.</div>
+      <div class="radio-group" data-key="house_title">
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="q8" value="both">
+          <div class="radio-dot"></div>
+          <span>Both of our names</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="q8" value="mine">
+          <div class="radio-dot"></div>
+          <span>Just my name</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="q8" value="theirs">
+          <div class="radio-dot"></div>
+          <span>Just their name</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="q8" value="unsure">
+          <div class="radio-dot"></div>
+          <span>I'm not sure</span>
+        </label>
+      </div>
+      <div class="q-nav">
+        <button class="btn btn-secondary" onclick="prevQ(8)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(8)">Next</button>
+      </div>
+    </div>
+
+    <!-- Q9: Other assets -->
+    <div class="q-card" data-q="9">
+      <div class="q-number">Question 9 of 13</div>
+      <div class="q-question">What other significant assets exist?</div>
+      <div class="q-why">Everything marital gets divided &mdash; retirement, savings, vehicles, investments. The more assets in the pot, the less pressure on any single one (like your business).</div>
+      <textarea class="form-textarea" id="q9" placeholder="List what comes to mind: retirement accounts (401k, IRA), savings accounts, vehicles, investments, valuable property..." data-key="other_assets"></textarea>
+      <div class="q-nav">
+        <button class="btn btn-secondary" onclick="prevQ(9)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(9)">Next</button>
+      </div>
+    </div>
+
+    <!-- Q10: Debts -->
+    <div class="q-card" data-q="10">
+      <div class="q-number">Question 10 of 13</div>
+      <div class="q-question">What debts do you have?</div>
+      <div class="q-why">Debts acquired during the marriage are also divided. Student loans, credit cards, car loans, business debt &mdash; it all factors in.</div>
+      <textarea class="form-textarea" id="q10" placeholder="List debts: student loans, credit cards, car payments, business loans, medical debt..." data-key="debts"></textarea>
+      <div class="q-nav">
+        <button class="btn btn-secondary" onclick="prevQ(10)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(10)">Next</button>
+      </div>
+    </div>
+
+    <!-- Q11: Amicable? -->
+    <div class="q-card" data-q="11">
+      <div class="q-number">Question 11 of 13</div>
+      <div class="q-question">How would you describe the situation right now?</div>
+      <div class="q-why">This affects whether mediation (cheaper, faster, less adversarial) is an option, or whether you'll need to prepare for a more contested process.</div>
+      <div class="radio-group" data-key="amicability">
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="q11" value="amicable">
+          <div class="radio-dot"></div>
+          <span>Mostly amicable &mdash; we can talk</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="q11" value="tense">
+          <div class="radio-dot"></div>
+          <span>Tense but manageable</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="q11" value="contested">
+          <div class="radio-dot"></div>
+          <span>Very difficult &mdash; not communicating well</span>
+        </label>
+      </div>
+      <div class="q-nav">
+        <button class="btn btn-secondary" onclick="prevQ(11)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(11)">Next</button>
+      </div>
+    </div>
+
+    <!-- Q12: Children -->
+    <div class="q-card" data-q="12">
+      <div class="q-number">Question 12 of 13</div>
+      <div class="q-question">Do you have children together?</div>
+      <div class="q-why">Children affect house decisions (courts prefer stability for kids), custody/support calculations, and the overall division approach.</div>
+      <div class="radio-group" data-key="children">
+        <label class="radio-option" onclick="selectRadio(this); showConditional('q12-details', this, 'yes')">
+          <input type="radio" name="q12" value="yes">
+          <div class="radio-dot"></div>
+          <span>Yes</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this); showConditional('q12-details', this, 'yes')">
+          <input type="radio" name="q12" value="no">
+          <div class="radio-dot"></div>
+          <span>No</span>
+        </label>
+      </div>
+      <div class="conditional-field" id="q12-details">
+        <input class="form-input" type="text" id="q12-text" placeholder="How many, and their ages?" data-key="children_details">
+      </div>
+      <div class="q-nav">
+        <button class="btn btn-secondary" onclick="prevQ(12)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(12)">Next</button>
+      </div>
+    </div>
+
+    <!-- Q13: Lawyer -->
+    <div class="q-card" data-q="13">
+      <div class="q-number">Question 13 of 13</div>
+      <div class="q-question">Has either of you hired a lawyer yet?</div>
+      <div class="q-why">If your spouse already has a lawyer, you should get one too. If neither has, you may be able to start with mediation.</div>
+      <div class="radio-group" data-key="lawyer_status">
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="q13" value="neither">
+          <div class="radio-dot"></div>
+          <span>Neither of us</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="q13" value="i_have">
+          <div class="radio-dot"></div>
+          <span>I have</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="q13" value="they_have">
+          <div class="radio-dot"></div>
+          <span>They have</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="q13" value="both">
+          <div class="radio-dot"></div>
+          <span>Both of us</span>
+        </label>
+      </div>
+      <div class="q-nav">
+        <button class="btn btn-secondary" onclick="prevQ(13)">Back</button>
+        <button class="btn btn-accent" onclick="finishQ()">See Results</button>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div id="results-card">
+      <h3>You're Done</h3>
+      <p>Your answers have been saved. Share them with the person who sent you this page so they can help you figure out next steps.</p>
+      <div class="share-buttons">
+        <button class="btn btn-primary" onclick="copyToClipboard()">Copy Answers to Send as Text</button>
+        <button class="btn btn-secondary" onclick="emailAnswers()">Send via Email</button>
+        <button class="btn btn-secondary" onclick="copyLink()">Copy Shareable Link</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ AI PROMPT SECTION ═══════════════ -->
+  <section>
+    <div class="container">
+      <div class="section-label"><span class="dot"></span> Keep Researching</div>
+      <h2>Use AI to Help You</h2>
+      <p>You can paste the text below into <a href="https://chatgpt.com" target="_blank" style="color:var(--primary);font-weight:500">ChatGPT</a> or <a href="https://claude.ai" target="_blank" style="color:var(--primary);font-weight:500">Claude</a> (both free). It already includes your situation so the AI can help you ask the right questions.</p>
+
+      <div class="prompt-box" id="ai-prompt">I'm going through a divorce in Colorado and I need help understanding my financial situation. Here's my background:
+
+- I own a wedding photography LLC in Denver, Colorado
+- The business is named after me and I am the sole owner
+- I take all photos and do all editing myself — it's a one-person operation
+- Annual profit is approximately $83,000 and has been steady
+- I've been running the business for about 10 years
+- There is no prenuptial agreement
+- My spouse and I own a house together
+
+I've learned that Colorado is an equitable distribution state (not community property) and that my business likely qualifies as "personal goodwill" since clients hire me specifically, the business bears my name, and there's no transferable value without me.
+
+Can you help me understand:
+1. What questions should I ask a divorce attorney in my first consultation?
+2. How might spousal maintenance (alimony) work given my income level?
+3. What documents should I be gathering right now?
+4. What should I absolutely NOT do during this process?
+5. How does the house division typically work when both names are on it?
+
+Please ask me follow-up questions if you need more details to give me accurate guidance. I'm new to all of this and want to make informed decisions.</div>
+
+      <button class="btn btn-primary copy-prompt-btn" onclick="copyPrompt()">Copy This Prompt</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>Made with care. This is general information, not legal advice.<br>Please consult a Colorado family law attorney for guidance specific to your situation.</p>
+  </footer>
+
+</div>
+
+<!-- TOAST -->
+<div class="copied-toast" id="toast"></div>
+
+<script>
+// ─── PASSWORD ───
+function checkPassword() {
+  const input = document.getElementById('pw-input');
+  const error = document.getElementById('pw-error');
+  if (input.value === '1080') {
+    document.getElementById('password-screen').style.display = 'none';
+    const main = document.getElementById('main-content');
+    main.style.display = 'block';
+    requestAnimationFrame(() => main.classList.add('visible'));
+    sessionStorage.setItem('jg_auth', '1');
+    loadAnswers();
+    checkHashForAnswers();
+  } else {
+    input.classList.add('error');
+    error.classList.add('visible');
+    setTimeout(() => { input.classList.remove('error'); }, 500);
+  }
+}
+
+document.getElementById('pw-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') checkPassword();
+});
+
+// Auto-login if already authenticated this session
+if (sessionStorage.getItem('jg_auth') === '1') {
+  document.getElementById('password-screen').style.display = 'none';
+  const main = document.getElementById('main-content');
+  main.style.display = 'block';
+  main.classList.add('visible');
+  window.addEventListener('DOMContentLoaded', () => { loadAnswers(); checkHashForAnswers(); });
+}
+
+// ─── QUESTIONNAIRE STATE ───
+const TOTAL_Q = 13;
+let currentQ = 1;
+let answers = {};
+
+function updateProgress() {
+  const answered = Object.keys(answers).length;
+  document.getElementById('progress-fill').style.width = (answered / TOTAL_Q * 100) + '%';
+  document.getElementById('progress-text').textContent = answered + ' / ' + TOTAL_Q;
+}
+
+function showQ(n) {
+  document.querySelectorAll('.q-card').forEach(c => c.classList.remove('active'));
+  const card = document.querySelector(`.q-card[data-q="${n}"]`);
+  if (card) {
+    card.classList.add('active');
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  currentQ = n;
+}
+
+function saveAnswer(key, value) {
+  if (value && value.toString().trim()) {
+    answers[key] = value.toString().trim();
+  }
+  localStorage.setItem('jg_answers', JSON.stringify(answers));
+  updateProgress();
+}
+
+function collectCurrentAnswers(q) {
+  const card = document.querySelector(`.q-card[data-q="${q}"]`);
+  if (!card) return;
+
+  // Collect from inputs
+  card.querySelectorAll('.form-input, .form-textarea, .form-select').forEach(el => {
+    if (el.dataset.key && el.value) saveAnswer(el.dataset.key, el.value);
+  });
+
+  // Collect from radio groups
+  card.querySelectorAll('.radio-group').forEach(group => {
+    const key = group.dataset.key;
+    const checked = group.querySelector('input[type="radio"]:checked');
+    if (key && checked) saveAnswer(key, checked.value);
+  });
+}
+
+function nextQ(q) {
+  collectCurrentAnswers(q);
+  if (q < TOTAL_Q) showQ(q + 1);
+}
+
+function prevQ(q) {
+  collectCurrentAnswers(q);
+  if (q > 1) showQ(q - 1);
+}
+
+function finishQ() {
+  collectCurrentAnswers(TOTAL_Q);
+  document.querySelectorAll('.q-card').forEach(c => c.classList.remove('active'));
+  document.getElementById('results-card').classList.add('active');
+  document.getElementById('results-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// ─── RADIO SELECTION ───
+function selectRadio(label) {
+  const group = label.closest('.radio-group');
+  group.querySelectorAll('.radio-option').forEach(o => o.classList.remove('selected'));
+  label.classList.add('selected');
+  label.querySelector('input').checked = true;
+}
+
+function showConditional(id, label, triggerValue) {
+  const el = document.getElementById(id);
+  const radio = label.querySelector('input');
+  if (radio.value === triggerValue) {
+    el.classList.add('visible');
+  } else {
+    el.classList.remove('visible');
+  }
+}
+
+// ─── LOAD SAVED ANSWERS ───
+function loadAnswers() {
+  const saved = localStorage.getItem('jg_answers');
+  if (saved) {
+    try {
+      answers = JSON.parse(saved);
+    } catch(e) { answers = {}; }
+  }
+
+  // Restore values to form elements
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const val = answers[el.dataset.key];
+    if (!val) return;
+
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') {
+      el.value = val;
+    }
+
+    if (el.classList.contains('radio-group')) {
+      const radio = el.querySelector(`input[value="${val}"]`);
+      if (radio) {
+        radio.checked = true;
+        radio.closest('.radio-option').classList.add('selected');
+      }
+    }
+  });
+
+  updateProgress();
+  showQ(1);
+}
+
+// ─── SHARE FUNCTIONS ───
+function formatAnswers() {
+  const labels = {
+    marriage_year: 'Year married',
+    business_timing: 'Business started',
+    spouse_helped: 'Spouse helped with business',
+    spouse_help_details: 'How spouse helped',
+    marital_funds_used: 'Marital funds used for business',
+    marital_funds_details: 'Marital funds details',
+    spouse_sacrifice: 'Spouse career sacrifice',
+    spouse_income: 'Spouse income range',
+    house_value: 'House value',
+    mortgage_owed: 'Mortgage owed',
+    house_title: 'Name on deed/mortgage',
+    other_assets: 'Other assets',
+    debts: 'Debts',
+    amicability: 'Situation tone',
+    children: 'Children',
+    children_details: 'Children details',
+    lawyer_status: 'Lawyer status'
+  };
+
+  let text = "JENNY'S DIVORCE QUESTIONNAIRE ANSWERS\n";
+  text += "━".repeat(40) + "\n\n";
+
+  for (const [key, label] of Object.entries(labels)) {
+    if (answers[key]) {
+      text += `${label}: ${answers[key]}\n`;
+    }
+  }
+
+  text += "\n" + "━".repeat(40);
+  text += "\nBusiness: Wedding photography LLC, sole owner";
+  text += "\nAnnual profit: ~$83,000 (steady)";
+  text += "\nYears in business: ~10";
+  text += "\nPrenup: None";
+  text += "\nState: Colorado (equitable distribution)";
+
+  return text;
+}
+
+function encodeAnswers() {
+  return btoa(unescape(encodeURIComponent(JSON.stringify(answers))));
+}
+
+function decodeAnswers(hash) {
+  try {
+    return JSON.parse(decodeURIComponent(escape(atob(hash))));
+  } catch(e) { return null; }
+}
+
+function checkHashForAnswers() {
+  const hash = window.location.hash.slice(1);
+  if (hash && hash.startsWith('a=')) {
+    const decoded = decodeAnswers(hash.slice(2));
+    if (decoded) {
+      answers = decoded;
+      localStorage.setItem('jg_answers', JSON.stringify(answers));
+      loadAnswers();
+    }
+  }
+}
+
+function copyToClipboard() {
+  const text = formatAnswers();
+  navigator.clipboard.writeText(text).then(() => showToast('Copied! Paste it in a text message.'));
+}
+
+function emailAnswers() {
+  const text = formatAnswers();
+  const subject = encodeURIComponent("My answers from the guide");
+  const body = encodeURIComponent(text);
+  window.open(`mailto:?subject=${subject}&body=${body}`, '_self');
+  showToast('Opening email...');
+}
+
+function copyLink() {
+  const encoded = encodeAnswers();
+  const url = window.location.origin + window.location.pathname + '#a=' + encoded;
+  navigator.clipboard.writeText(url).then(() => showToast('Link copied! Send it to your friend.'));
+}
+
+function copyPrompt() {
+  const text = document.getElementById('ai-prompt').textContent;
+  navigator.clipboard.writeText(text).then(() => showToast('Prompt copied! Paste it into ChatGPT or Claude.'));
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('visible');
+  setTimeout(() => toast.classList.remove('visible'), 2500);
+}
+
+// ─── INIT ───
+document.addEventListener('DOMContentLoaded', () => {
+  if (sessionStorage.getItem('jg_auth') === '1') {
+    loadAnswers();
+    checkHashForAnswers();
+  }
+
+  // Auto-save on any input change
+  document.querySelectorAll('.form-input, .form-textarea, .form-select').forEach(el => {
+    el.addEventListener('change', () => {
+      if (el.dataset.key) saveAnswer(el.dataset.key, el.value);
+    });
+    el.addEventListener('input', () => {
+      if (el.dataset.key) saveAnswer(el.dataset.key, el.value);
+    });
+  });
+});
+</script>
+
+</body>
+</html>
