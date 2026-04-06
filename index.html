@@ -25,6 +25,8 @@
   --radius: 16px;
   --radius-sm: 10px;
   --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --gold: #b8963e;
+  --gold-light: #faf3e0;
 }
 
 html { scroll-behavior: smooth; }
@@ -102,9 +104,7 @@ body {
   background: var(--bg);
 }
 
-.pw-input-wrap input:focus {
-  border-color: var(--primary);
-}
+.pw-input-wrap input:focus { border-color: var(--primary); }
 
 .pw-input-wrap input.error {
   border-color: var(--accent);
@@ -156,6 +156,37 @@ body {
   opacity: 1;
 }
 
+/* ─── NAV TABS ─── */
+.part-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250,247,244,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  gap: 0;
+}
+
+.part-nav a {
+  padding: 16px 28px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-light);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition);
+}
+
+.part-nav a:hover { color: var(--text); }
+
+.part-nav a.active {
+  color: var(--primary-dark);
+  border-bottom-color: var(--primary);
+}
+
 /* ─── HERO ─── */
 .hero {
   background: linear-gradient(145deg, #f5efe9, #e8f0ec);
@@ -182,6 +213,17 @@ body {
   line-height: 1.7;
   max-width: 520px;
   margin: 0 auto;
+}
+
+/* ─── PART 2 HERO ─── */
+.hero-part2 {
+  background: linear-gradient(145deg, #e8f0ec, #f0ece4);
+  padding: 72px 24px 56px;
+  text-align: center;
+}
+
+.hero-part2 .hero-inner h1 {
+  color: var(--primary-dark);
 }
 
 /* ─── SECTIONS ─── */
@@ -243,9 +285,7 @@ p { margin-bottom: 16px; }
   margin: 20px 0;
 }
 
-.card.highlight {
-  border-left: 4px solid var(--primary);
-}
+.card.highlight { border-left: 4px solid var(--primary); }
 
 .card.good-news {
   background: var(--primary-light);
@@ -264,6 +304,20 @@ p { margin-bottom: 16px; }
 .card.warning {
   background: var(--accent-light);
   border-left: 4px solid var(--accent);
+}
+
+.card.golden {
+  background: var(--gold-light);
+  border-left: 4px solid var(--gold);
+}
+
+.card.golden .card-label {
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
 }
 
 /* ─── COMPARISON TABLE ─── */
@@ -294,9 +348,7 @@ p { margin-bottom: 16px; }
   line-height: 1.5;
 }
 
-.compare-table tr:last-child td {
-  border-bottom: none;
-}
+.compare-table tr:last-child td { border-bottom: none; }
 
 .compare-table .label-good {
   color: var(--primary-dark);
@@ -306,6 +358,39 @@ p { margin-bottom: 16px; }
 .compare-table .label-caution {
   color: var(--accent);
   font-weight: 600;
+}
+
+/* ─── SIMPLE TABLE ─── */
+.info-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 20px 0;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.info-table td {
+  padding: 12px 18px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.info-table tr:last-child td { border-bottom: none; }
+
+.info-table td:first-child {
+  color: var(--text-light);
+  font-weight: 500;
+  width: 45%;
+}
+
+.info-table td:last-child { font-weight: 600; }
+
+.info-table .highlight-row td {
+  background: var(--primary-light);
+  color: var(--primary-dark);
 }
 
 /* ─── LIST STYLES ─── */
@@ -374,8 +459,18 @@ p { margin-bottom: 16px; }
 
 .callout strong { color: var(--primary-dark); }
 
+.callout-warm {
+  background: var(--gold-light);
+  border-radius: var(--radius-sm);
+  padding: 20px 24px;
+  margin: 24px 0;
+  font-size: 15px;
+}
+
+.callout-warm strong { color: var(--gold); }
+
 /* ─── QUESTIONNAIRE ─── */
-#questionnaire {
+.q-section {
   background: linear-gradient(145deg, #f5efe9, #e8f0ec);
   padding: 56px 24px;
 }
@@ -524,9 +619,7 @@ p { margin-bottom: 16px; }
   transition: border-color var(--transition);
 }
 
-.radio-option.selected .radio-dot {
-  border-color: var(--primary);
-}
+.radio-option.selected .radio-dot { border-color: var(--primary); }
 
 .radio-option.selected .radio-dot::after {
   content: '';
@@ -565,30 +658,15 @@ p { margin-bottom: 16px; }
   border: none;
 }
 
-.btn-primary {
-  background: var(--primary);
-  color: white;
-}
-
+.btn-primary { background: var(--primary); color: white; }
 .btn-primary:hover { background: var(--primary-dark); }
-
-.btn-secondary {
-  background: transparent;
-  color: var(--text-light);
-  border: 2px solid var(--border);
-}
-
+.btn-secondary { background: transparent; color: var(--text-light); border: 2px solid var(--border); }
 .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
-
-.btn-accent {
-  background: var(--accent);
-  color: white;
-}
-
+.btn-accent { background: var(--accent); color: white; }
 .btn-accent:hover { background: #c2745e; }
 
 /* ─── RESULTS / SHARE ─── */
-#results-card {
+.results-card {
   display: none;
   background: var(--card);
   border-radius: var(--radius);
@@ -599,15 +677,15 @@ p { margin-bottom: 16px; }
   text-align: center;
 }
 
-#results-card.active { display: block; animation: fadeUp 0.35s ease; }
+.results-card.active { display: block; animation: fadeUp 0.35s ease; }
 
-#results-card h3 {
+.results-card h3 {
   font-family: 'Playfair Display', serif;
   font-size: 24px;
   margin: 0 0 12px;
 }
 
-#results-card p {
+.results-card p {
   color: var(--text-light);
   font-size: 15px;
   margin-bottom: 28px;
@@ -643,24 +721,43 @@ p { margin-bottom: 16px; }
   transform: translateX(-50%) translateY(0);
 }
 
+/* ─── DIVIDER ─── */
+.part-divider {
+  text-align: center;
+  padding: 48px 24px;
+  background: var(--bg);
+}
+
+.part-divider .divider-line {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.part-divider .divider-line::before,
+.part-divider .divider-line::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.part-divider .divider-label {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--primary);
+}
+
 /* ─── FOOTER ─── */
 footer {
   text-align: center;
   padding: 40px 24px;
   color: var(--text-light);
   font-size: 13px;
-}
-
-/* ─── RESPONSIVE ─── */
-@media (max-width: 600px) {
-  .pw-card { padding: 36px 24px; }
-  .hero { padding: 56px 20px 44px; }
-  section { padding: 40px 0; }
-  .q-card { padding: 28px 20px; }
-  #results-card { padding: 32px 20px; }
-  .compare-table th, .compare-table td { padding: 10px 12px; font-size: 13px; }
-  .q-nav { flex-direction: column-reverse; }
-  .q-nav .btn { width: 100%; text-align: center; }
 }
 
 /* ─── PROMPT SECTION ─── */
@@ -684,6 +781,20 @@ footer {
   gap: 8px;
   margin-top: 8px;
 }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 600px) {
+  .pw-card { padding: 36px 24px; }
+  .hero, .hero-part2 { padding: 56px 20px 44px; }
+  section { padding: 40px 0; }
+  .q-card { padding: 28px 20px; }
+  .results-card { padding: 32px 20px; }
+  .compare-table th, .compare-table td { padding: 10px 12px; font-size: 13px; }
+  .info-table td { padding: 10px 12px; font-size: 13px; }
+  .q-nav { flex-direction: column-reverse; }
+  .q-nav .btn { width: 100%; text-align: center; }
+  .part-nav a { padding: 14px 16px; font-size: 13px; }
+}
 </style>
 </head>
 <body>
@@ -705,11 +816,22 @@ footer {
 <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
 <div id="main-content">
 
+  <!-- STICKY NAV -->
+  <nav class="part-nav">
+    <a href="#part1-start" class="active" id="nav-part1">Part 1: The Basics</a>
+    <a href="#part2-start" id="nav-part2">Part 2: Your Situation</a>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--               PART ONE                      -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div id="part1-start"></div>
+
   <!-- HERO -->
   <div class="hero">
     <div class="hero-inner">
-      <h1>A Friend Put This Together for You</h1>
-      <p class="subtitle">This page walks through what's likely to happen with your business and your house during the divorce. It also has some questions to answer so we can help you prepare. Take your time.</p>
+      <h1>Hey Jennie &mdash; A Friend Put This Together for You</h1>
+      <p class="subtitle">This page walks through what's likely to happen with your business and your house during the divorce &mdash; in plain English, not lawyer-speak. Take your time with it. There's no rush.</p>
     </div>
   </div>
 
@@ -733,7 +855,7 @@ footer {
         <li>If you stopped working tomorrow, there'd be no business to sell</li>
       </ul>
 
-      <p>Courts split the value of a business into two categories. Here's what they are and why the distinction matters so much in your case:</p>
+      <p>Courts split the value of a business into two categories. Here's what they are and why the distinction matters so much for you:</p>
 
       <table class="compare-table">
         <thead>
@@ -775,7 +897,7 @@ footer {
         <p>Colorado uses a formula based on both spouses' incomes:</p>
         <p><strong>40% of the higher earner's gross income</strong> minus <strong>50% of the lower earner's gross income</strong></p>
         <p>How long it lasts depends on how long you were married. Marriages under 3 years may get no maintenance. Longer marriages get more months.</p>
-        <p style="margin-bottom:0">This formula applies whether you're the higher or lower earner. That's one of the questions below.</p>
+        <p style="margin-bottom:0">This formula applies whether you're the higher or lower earner &mdash; and it turns out, this is important for you. Keep reading.</p>
       </div>
 
       <div class="callout">
@@ -791,16 +913,12 @@ footer {
       <h2>What Happens to the House</h2>
       <p>If you bought the house together during the marriage, it's a <strong>marital asset</strong> &mdash; regardless of whose name is on the deed. Colorado divides marital property "equitably," which means fairly but not necessarily 50/50.</p>
 
-      <h3>Your Options</h3>
+      <h3>The Three Options</h3>
       <ol class="numbered-list">
         <li><strong>Sell it and split the equity.</strong> Most straightforward. After paying off the mortgage and closing costs, you each get a share.</li>
-        <li><strong>One person buys the other out.</strong> This means refinancing the mortgage into one name and paying the other person their share of equity. Requires qualifying for the mortgage alone.</li>
+        <li><strong>One person buys the other out.</strong> This means refinancing the mortgage into one name and paying the other person their share of equity.</li>
         <li><strong>Trade assets.</strong> One person keeps the house in exchange for giving up their claim on other assets (retirement accounts, savings, etc.).</li>
       </ol>
-
-      <div class="card warning">
-        <p style="margin-bottom:0"><strong>The house is probably the bigger financial question</strong> in this divorce &mdash; not the business. That's where real equity is, and where negotiation matters most. This is why the questions below ask about the house value and mortgage.</p>
-      </div>
     </div>
   </section>
 
@@ -825,60 +943,41 @@ footer {
       <div class="card">
         <h3 style="margin-top:0">No Prenup &mdash; What That Means</h3>
         <p>Without a prenup, everything acquired during the marriage is presumed marital property. Things you owned <em>before</em> the marriage are "separate property" &mdash; but any increase in their value during the marriage could be considered marital.</p>
-        <p style="margin-bottom:0">If you started the business before getting married, the original value at the time of marriage is yours. Only the growth during the marriage is potentially divisible.</p>
+        <p style="margin-bottom:0">Since you started the business during the marriage, the entire business was built within the marriage. But remember &mdash; "personal goodwill" still protects you.</p>
       </div>
     </div>
   </section>
 
-  <!-- SECTION: NEXT STEPS -->
-  <section>
-    <div class="container">
-      <div class="section-label"><span class="dot"></span> What To Do</div>
-      <h2>Recommended Next Steps</h2>
-
-      <ol class="numbered-list">
-        <li><strong>Answer the questions below.</strong> They'll help build a clearer picture of your situation so you can have a more productive first meeting with a lawyer.</li>
-        <li><strong>Consult a Colorado family law attorney.</strong> Many offer a free 30-minute consultation. Ask specifically: <em>"I own a solo photography LLC with $83K annual profit, named after me, where I do all the work. How would a court value this?"</em></li>
-        <li><strong>Don't move money around or make big financial changes.</strong> Courts look unfavorably on either spouse who appears to be hiding or spending down assets.</li>
-        <li><strong>Gather financial documents.</strong> Tax returns (last 3 years), bank statements, mortgage statement, retirement account statements, business profit &amp; loss statements.</li>
-      </ol>
-
-      <div class="callout">
-        <strong>Use AI to keep researching.</strong> Below the questionnaire there's a prompt you can paste into <a href="https://chatgpt.com" target="_blank" style="color: var(--primary)">ChatGPT</a> or <a href="https://claude.ai" target="_blank" style="color: var(--primary)">Claude</a> (both free) that already includes your situation. It'll help you ask the right follow-up questions.
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════ QUESTIONNAIRE ═══════════════ -->
-  <div id="questionnaire">
+  <!-- ═══════════════ PART 1 QUESTIONNAIRE ═══════════════ -->
+  <div id="questionnaire-1" class="q-section">
     <div class="q-header">
       <div class="section-label"><span class="dot"></span> Your Turn</div>
       <h2>A Few Questions</h2>
-      <p>These will help us understand your situation better. Your answers are saved on your device as you go &mdash; you won't lose them if you close the page. At the end you can share them.</p>
+      <p>These will help us understand your specific situation. Your answers are saved on your device as you go &mdash; you won't lose them if you close the page.</p>
     </div>
 
     <div class="progress-bar-wrap">
-      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
-      <div class="progress-text" id="progress-text">0 / 13</div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill-1"></div></div>
+      <div class="progress-text" id="progress-text-1">0 / 13</div>
     </div>
 
-    <!-- Q1: Marriage date -->
-    <div class="q-card" data-q="1">
+    <!-- Q1 -->
+    <div class="q-card" data-q="1" data-set="1">
       <div class="q-number">Question 1 of 13</div>
       <div class="q-question">What year did you get married?</div>
-      <div class="q-why">This determines how much of the business's value (if any) was built during the marriage, and affects how long spousal maintenance could last.</div>
+      <div class="q-why">This determines how long the marriage has lasted, which affects how long spousal maintenance could last and how assets are viewed.</div>
       <input class="form-input" type="number" id="q1" placeholder="e.g. 2018" min="1970" max="2026" data-key="marriage_year">
       <div class="q-nav">
         <span></span>
-        <button class="btn btn-primary" onclick="nextQ(1)">Next</button>
+        <button class="btn btn-primary" onclick="nextQ(1,1)">Next</button>
       </div>
     </div>
 
-    <!-- Q2: Business start vs marriage -->
-    <div class="q-card" data-q="2">
+    <!-- Q2 -->
+    <div class="q-card" data-q="2" data-set="1">
       <div class="q-number">Question 2 of 13</div>
       <div class="q-question">Did you start your photography business before or during the marriage?</div>
-      <div class="q-why">If the business existed before the marriage, only the increase in value during the marriage could be considered marital property. The original value stays yours.</div>
+      <div class="q-why">If the business existed before the marriage, only the increase in value during the marriage could be considered marital property.</div>
       <div class="radio-group" data-key="business_timing">
         <label class="radio-option" onclick="selectRadio(this)">
           <input type="radio" name="q2" value="before">
@@ -892,13 +991,13 @@ footer {
         </label>
       </div>
       <div class="q-nav">
-        <button class="btn btn-secondary" onclick="prevQ(2)">Back</button>
-        <button class="btn btn-primary" onclick="nextQ(2)">Next</button>
+        <button class="btn btn-secondary" onclick="prevQ(2,1)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(2,1)">Next</button>
       </div>
     </div>
 
-    <!-- Q3: Spouse help -->
-    <div class="q-card" data-q="3">
+    <!-- Q3 -->
+    <div class="q-card" data-q="3" data-set="1">
       <div class="q-number">Question 3 of 13</div>
       <div class="q-question">Did your spouse ever help with the business?</div>
       <div class="q-why">Even informal help (carrying gear, bookkeeping, social media, driving to venues) can create a claim to business value. Be thorough here.</div>
@@ -915,19 +1014,19 @@ footer {
         </label>
       </div>
       <div class="conditional-field" id="q3-details">
-        <textarea class="form-textarea" id="q3-text" placeholder="Describe what they did (e.g., helped with accounting, drove you to venues, watched kids so you could edit, posted on social media...)" data-key="spouse_help_details"></textarea>
+        <textarea class="form-textarea" id="q3-text" placeholder="Describe what they did..." data-key="spouse_help_details"></textarea>
       </div>
       <div class="q-nav">
-        <button class="btn btn-secondary" onclick="prevQ(3)">Back</button>
-        <button class="btn btn-primary" onclick="nextQ(3)">Next</button>
+        <button class="btn btn-secondary" onclick="prevQ(3,1)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(3,1)">Next</button>
       </div>
     </div>
 
-    <!-- Q4: Marital funds -->
-    <div class="q-card" data-q="4">
+    <!-- Q4 -->
+    <div class="q-card" data-q="4" data-set="1">
       <div class="q-number">Question 4 of 13</div>
       <div class="q-question">Did money from the marriage fund the business?</div>
-      <div class="q-why">If joint savings or your spouse's income paid for equipment, marketing, education, or business expenses, that could strengthen a claim to part of the business value.</div>
+      <div class="q-why">If joint savings or your spouse's income paid for equipment, marketing, or education, that could strengthen a claim to part of the business value.</div>
       <div class="radio-group" data-key="marital_funds_used">
         <label class="radio-option" onclick="selectRadio(this); showConditional('q4-details', this, 'yes')">
           <input type="radio" name="q4" value="yes">
@@ -946,19 +1045,19 @@ footer {
         </label>
       </div>
       <div class="conditional-field" id="q4-details">
-        <textarea class="form-textarea" id="q4-text" placeholder="What did the money go toward? (e.g., camera body, lenses, a workshop, website redesign...)" data-key="marital_funds_details"></textarea>
+        <textarea class="form-textarea" id="q4-text" placeholder="What did the money go toward?" data-key="marital_funds_details"></textarea>
       </div>
       <div class="q-nav">
-        <button class="btn btn-secondary" onclick="prevQ(4)">Back</button>
-        <button class="btn btn-primary" onclick="nextQ(4)">Next</button>
+        <button class="btn btn-secondary" onclick="prevQ(4,1)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(4,1)">Next</button>
       </div>
     </div>
 
-    <!-- Q5: Spouse career sacrifice -->
-    <div class="q-card" data-q="5">
+    <!-- Q5 -->
+    <div class="q-card" data-q="5" data-set="1">
       <div class="q-number">Question 5 of 13</div>
       <div class="q-question">Did your spouse sacrifice career opportunities to support your work?</div>
-      <div class="q-why">For example, if they handled all household duties on weekends so you could shoot weddings, or moved for your business, that's a factor courts consider.</div>
+      <div class="q-why">If they handled household duties on weekends so you could shoot, or made career changes for your schedule, that's a factor courts consider.</div>
       <div class="radio-group" data-key="spouse_sacrifice">
         <label class="radio-option" onclick="selectRadio(this)">
           <input type="radio" name="q5" value="yes">
@@ -977,16 +1076,16 @@ footer {
         </label>
       </div>
       <div class="q-nav">
-        <button class="btn btn-secondary" onclick="prevQ(5)">Back</button>
-        <button class="btn btn-primary" onclick="nextQ(5)">Next</button>
+        <button class="btn btn-secondary" onclick="prevQ(5,1)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(5,1)">Next</button>
       </div>
     </div>
 
-    <!-- Q6: Spouse income -->
-    <div class="q-card" data-q="6">
+    <!-- Q6 -->
+    <div class="q-card" data-q="6" data-set="1">
       <div class="q-number">Question 6 of 13</div>
       <div class="q-question">What is your spouse's approximate annual income?</div>
-      <div class="q-why">This determines the direction and amount of spousal maintenance. If they earn more than you, you might receive support. If less, you might pay it.</div>
+      <div class="q-why">This determines who might pay or receive spousal maintenance, and how child support is calculated.</div>
       <select class="form-select" id="q6" data-key="spouse_income">
         <option value="">Select a range...</option>
         <option value="0-25k">$0 &ndash; $25,000</option>
@@ -999,13 +1098,13 @@ footer {
         <option value="unknown">I don't know</option>
       </select>
       <div class="q-nav">
-        <button class="btn btn-secondary" onclick="prevQ(6)">Back</button>
-        <button class="btn btn-primary" onclick="nextQ(6)">Next</button>
+        <button class="btn btn-secondary" onclick="prevQ(6,1)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(6,1)">Next</button>
       </div>
     </div>
 
-    <!-- Q7: House value -->
-    <div class="q-card" data-q="7">
+    <!-- Q7 -->
+    <div class="q-card" data-q="7" data-set="1">
       <div class="q-number">Question 7 of 13</div>
       <div class="q-question">What's the house worth, and what do you owe?</div>
       <div class="q-why">The equity (value minus mortgage) is what gets divided. This is often the single biggest asset in a divorce.</div>
@@ -1014,16 +1113,16 @@ footer {
         <input class="form-input" type="text" id="q7-owed" placeholder="Approximate mortgage balance (e.g. $320,000)" data-key="mortgage_owed">
       </div>
       <div class="q-nav">
-        <button class="btn btn-secondary" onclick="prevQ(7)">Back</button>
-        <button class="btn btn-primary" onclick="nextQ(7)">Next</button>
+        <button class="btn btn-secondary" onclick="prevQ(7,1)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(7,1)">Next</button>
       </div>
     </div>
 
-    <!-- Q8: House title -->
-    <div class="q-card" data-q="8">
+    <!-- Q8 -->
+    <div class="q-card" data-q="8" data-set="1">
       <div class="q-number">Question 8 of 13</div>
       <div class="q-question">Whose name is on the mortgage and deed?</div>
-      <div class="q-why">In Colorado this doesn't determine who "owns" it in divorce &mdash; marital property is marital property. But it matters for refinancing if one person wants to keep it.</div>
+      <div class="q-why">In Colorado this doesn't determine ownership in divorce, but it matters for refinancing if one person wants to keep the house.</div>
       <div class="radio-group" data-key="house_title">
         <label class="radio-option" onclick="selectRadio(this)">
           <input type="radio" name="q8" value="both">
@@ -1047,40 +1146,40 @@ footer {
         </label>
       </div>
       <div class="q-nav">
-        <button class="btn btn-secondary" onclick="prevQ(8)">Back</button>
-        <button class="btn btn-primary" onclick="nextQ(8)">Next</button>
+        <button class="btn btn-secondary" onclick="prevQ(8,1)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(8,1)">Next</button>
       </div>
     </div>
 
-    <!-- Q9: Other assets -->
-    <div class="q-card" data-q="9">
+    <!-- Q9 -->
+    <div class="q-card" data-q="9" data-set="1">
       <div class="q-number">Question 9 of 13</div>
       <div class="q-question">What other significant assets exist?</div>
-      <div class="q-why">Everything marital gets divided &mdash; retirement, savings, vehicles, investments. The more assets in the pot, the less pressure on any single one (like your business).</div>
-      <textarea class="form-textarea" id="q9" placeholder="List what comes to mind: retirement accounts (401k, IRA), savings accounts, vehicles, investments, valuable property..." data-key="other_assets"></textarea>
+      <div class="q-why">Everything marital gets divided &mdash; retirement, savings, vehicles, investments. The more assets in the pot, the less pressure on any single one.</div>
+      <textarea class="form-textarea" id="q9" placeholder="List what comes to mind: retirement accounts (401k, IRA), savings, vehicles, investments..." data-key="other_assets"></textarea>
       <div class="q-nav">
-        <button class="btn btn-secondary" onclick="prevQ(9)">Back</button>
-        <button class="btn btn-primary" onclick="nextQ(9)">Next</button>
+        <button class="btn btn-secondary" onclick="prevQ(9,1)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(9,1)">Next</button>
       </div>
     </div>
 
-    <!-- Q10: Debts -->
-    <div class="q-card" data-q="10">
+    <!-- Q10 -->
+    <div class="q-card" data-q="10" data-set="1">
       <div class="q-number">Question 10 of 13</div>
       <div class="q-question">What debts do you have?</div>
-      <div class="q-why">Debts acquired during the marriage are also divided. Student loans, credit cards, car loans, business debt &mdash; it all factors in.</div>
-      <textarea class="form-textarea" id="q10" placeholder="List debts: student loans, credit cards, car payments, business loans, medical debt..." data-key="debts"></textarea>
+      <div class="q-why">Debts acquired during the marriage are also divided. Student loans, credit cards, car loans &mdash; it all factors in.</div>
+      <textarea class="form-textarea" id="q10" placeholder="List debts: student loans, credit cards, car payments, medical debt..." data-key="debts"></textarea>
       <div class="q-nav">
-        <button class="btn btn-secondary" onclick="prevQ(10)">Back</button>
-        <button class="btn btn-primary" onclick="nextQ(10)">Next</button>
+        <button class="btn btn-secondary" onclick="prevQ(10,1)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(10,1)">Next</button>
       </div>
     </div>
 
-    <!-- Q11: Amicable? -->
-    <div class="q-card" data-q="11">
+    <!-- Q11 -->
+    <div class="q-card" data-q="11" data-set="1">
       <div class="q-number">Question 11 of 13</div>
       <div class="q-question">How would you describe the situation right now?</div>
-      <div class="q-why">This affects whether mediation (cheaper, faster, less adversarial) is an option, or whether you'll need to prepare for a more contested process.</div>
+      <div class="q-why">This affects whether mediation (cheaper, faster) is realistic, or whether you'll need to prepare for a more formal process.</div>
       <div class="radio-group" data-key="amicability">
         <label class="radio-option" onclick="selectRadio(this)">
           <input type="radio" name="q11" value="amicable">
@@ -1099,16 +1198,16 @@ footer {
         </label>
       </div>
       <div class="q-nav">
-        <button class="btn btn-secondary" onclick="prevQ(11)">Back</button>
-        <button class="btn btn-primary" onclick="nextQ(11)">Next</button>
+        <button class="btn btn-secondary" onclick="prevQ(11,1)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(11,1)">Next</button>
       </div>
     </div>
 
-    <!-- Q12: Children -->
-    <div class="q-card" data-q="12">
+    <!-- Q12 -->
+    <div class="q-card" data-q="12" data-set="1">
       <div class="q-number">Question 12 of 13</div>
       <div class="q-question">Do you have children together?</div>
-      <div class="q-why">Children affect house decisions (courts prefer stability for kids), custody/support calculations, and the overall division approach.</div>
+      <div class="q-why">Children affect house decisions, support calculations, and the court's overall priorities.</div>
       <div class="radio-group" data-key="children">
         <label class="radio-option" onclick="selectRadio(this); showConditional('q12-details', this, 'yes')">
           <input type="radio" name="q12" value="yes">
@@ -1125,13 +1224,13 @@ footer {
         <input class="form-input" type="text" id="q12-text" placeholder="How many, and their ages?" data-key="children_details">
       </div>
       <div class="q-nav">
-        <button class="btn btn-secondary" onclick="prevQ(12)">Back</button>
-        <button class="btn btn-primary" onclick="nextQ(12)">Next</button>
+        <button class="btn btn-secondary" onclick="prevQ(12,1)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(12,1)">Next</button>
       </div>
     </div>
 
-    <!-- Q13: Lawyer -->
-    <div class="q-card" data-q="13">
+    <!-- Q13 -->
+    <div class="q-card" data-q="13" data-set="1">
       <div class="q-number">Question 13 of 13</div>
       <div class="q-question">Has either of you hired a lawyer yet?</div>
       <div class="q-why">If your spouse already has a lawyer, you should get one too. If neither has, you may be able to start with mediation.</div>
@@ -1158,57 +1257,453 @@ footer {
         </label>
       </div>
       <div class="q-nav">
-        <button class="btn btn-secondary" onclick="prevQ(13)">Back</button>
-        <button class="btn btn-accent" onclick="finishQ()">See Results</button>
+        <button class="btn btn-secondary" onclick="prevQ(13,1)">Back</button>
+        <button class="btn btn-accent" onclick="finishSet1()">See Results</button>
       </div>
     </div>
 
-    <!-- RESULTS -->
-    <div id="results-card">
-      <h3>You're Done</h3>
-      <p>Your answers have been saved. Share them with the person who sent you this page so they can help you figure out next steps.</p>
+    <!-- SET 1 RESULTS -->
+    <div class="results-card" id="results-card-1">
+      <h3>Thank You, Jennie</h3>
+      <p>Your answers are saved. You can share them with the person who sent you this page, or scroll down to <strong>Part 2</strong> to see what we've learned about your specific situation.</p>
       <div class="share-buttons">
         <button class="btn btn-primary" onclick="copyToClipboard()">Copy Answers to Send as Text</button>
+        <button class="btn btn-secondary" onclick="emailAnswers()">Send via Email</button>
+        <button class="btn btn-secondary" onclick="copyLink()">Copy Shareable Link</button>
+      </div>
+      <div style="margin-top: 20px">
+        <a href="#part2-start" class="btn btn-accent" style="display:inline-block;text-decoration:none;">Continue to Part 2 &darr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!--              PART TWO                       -->
+  <!-- ═════════════════════════════════���═════════ -->
+
+  <div class="part-divider">
+    <div class="divider-line">
+      <span class="divider-label">Part Two</span>
+    </div>
+  </div>
+
+  <div id="part2-start"></div>
+
+  <div class="hero-part2">
+    <div class="hero-inner">
+      <h1>Jennie, Here's What We Found</h1>
+      <p class="subtitle">We looked at your answers and did some research. There's actually some really good news in here. Let's walk through it together.</p>
+    </div>
+  </div>
+
+  <!-- SECTION: THE BIG SURPRISE -->
+  <section>
+    <div class="container">
+      <div class="section-label"><span class="dot"></span> The Biggest Finding</div>
+      <h2>You're the Lower Earner &mdash; And That Changes Everything</h2>
+
+      <div class="card golden">
+        <div class="card-label">This Is Good News</div>
+        <p>Your spouse earns <strong>$100,000&ndash;$150,000 per year</strong>. You earn <strong>$83,000</strong>. That means in the eyes of Colorado law, <em>you are the lower-earning spouse</em>.</p>
+        <p style="margin-bottom:0">This is a big deal because it means financial support flows <strong>toward you</strong>, not away from you. You could receive spousal maintenance. You will receive child support. Your spouse's income and pension are among the biggest assets on the table &mdash; not your photography business.</p>
+      </div>
+
+      <p>Before we had your answers, the main worry was protecting your business from being split. That's still true &mdash; but now we can see the bigger picture, and your position is stronger than you probably expected.</p>
+    </div>
+  </section>
+
+  <!-- SECTION: YOUR NUMBERS -->
+  <section>
+    <div class="container">
+      <div class="section-label"><span class="dot"></span> Your Numbers</div>
+      <h2>Here's What We're Working With</h2>
+
+      <table class="info-table">
+        <tr><td>Married since</td><td>2010 (~16 years)</td></tr>
+        <tr><td>Your income</td><td>~$83,000 / year</td></tr>
+        <tr><td>Spouse's income</td><td>$100,000&ndash;$150,000 / year</td></tr>
+        <tr><td>Home value</td><td>~$750,000</td></tr>
+        <tr><td>Mortgage balance</td><td>~$492,000</td></tr>
+        <tr class="highlight-row"><td>Home equity</td><td>~$258,000</td></tr>
+        <tr><td>Children</td><td>3 (ages 9, 7, and 5)</td></tr>
+        <tr><td>Other assets</td><td>PERA, Roth IRA, Rollover IRA, car</td></tr>
+        <tr><td>Debts</td><td>Credit card, legal debt</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- SECTION: CHILD SUPPORT -->
+  <section>
+    <div class="container">
+      <div class="section-label"><span class="dot"></span> Child Support</div>
+      <h2>Child Support &mdash; This Is the Big One</h2>
+
+      <p>With three children and your spouse earning significantly more than you, <strong>you will receive child support</strong>. This is calculated by Colorado's formula based on:</p>
+
+      <ul class="styled-list">
+        <li>Both parents' gross incomes</li>
+        <li>The number of children (three, in your case)</li>
+        <li>How many overnights the kids spend with each parent</li>
+        <li>Health insurance and childcare costs</li>
+      </ul>
+
+      <div class="card good-news">
+        <div class="card-label">Why This Matters So Much</div>
+        <p style="margin-bottom:0">With a <strong>$40,000+ income gap</strong> and <strong>three kids</strong>, child support will likely be a meaningful monthly amount. This is probably the single most significant ongoing financial piece of this divorce. The exact number depends on your custody arrangement, which is why that's one of the follow-up questions below.</p>
+      </div>
+
+      <div class="callout">
+        <strong>Even with 50/50 custody</strong>, the higher-earning parent still pays child support in Colorado. The amount is just lower than it would be with primary custody.
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: SPOUSAL MAINTENANCE -->
+  <section>
+    <div class="container">
+      <div class="section-label"><span class="dot"></span> Spousal Maintenance</div>
+      <h2>You Could Receive Maintenance Too</h2>
+
+      <p>Colorado's formula says the lower earner in a long-term marriage can receive spousal maintenance (alimony). Here's how it works with your numbers:</p>
+
+      <div class="card highlight">
+        <h3 style="margin-top:0">The Math (Estimated)</h3>
+        <table class="info-table" style="box-shadow:none;margin:12px 0">
+          <tr><td>40% of spouse's income (~$125K midpoint)</td><td>$4,167/mo</td></tr>
+          <tr><td>Minus 50% of your income ($83K)</td><td>-$3,458/mo</td></tr>
+          <tr><td>Gross maintenance</td><td>$709/mo</td></tr>
+          <tr><td>Income tier adjustment (x 0.75)</td><td>~$531/mo</td></tr>
+        </table>
+        <p><strong>Duration:</strong> For a 16-year marriage, maintenance could last up to <strong>8 years</strong> (50% of marriage length).</p>
+        <p style="margin-bottom:0"><strong>Important caveat:</strong> There's a cap &mdash; your income plus maintenance can't exceed 40% of your combined incomes. Since your $83K is already close to that cap, the formula amount may end up being quite small. <em>However</em>, the formula is advisory, not mandatory. A judge has discretion, and with three young children and a 16-year marriage, there's room for a good attorney to argue for more.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: BUSINESS UPDATE -->
+  <section>
+    <div class="container">
+      <div class="section-label"><span class="dot"></span> Your Business</div>
+      <h2>Your Business Is Still Protected &mdash; With One Wrinkle</h2>
+
+      <p>Everything from Part 1 still holds true: your business is overwhelmingly personal goodwill, and Colorado courts won't assign a dollar value to personal goodwill.</p>
+
+      <div class="card warning">
+        <p><strong>The wrinkle:</strong> You told us your spouse was your second photographer for the first two years. A spouse's attorney could use that to argue some "enterprise goodwill" exists &mdash; that the spouse helped build the business.</p>
+        <p style="margin-bottom:0"><strong>But here's the counter:</strong> That was over 8 years ago. The business today runs entirely on your work, your name, and your relationships. Two years of part-time help a decade ago doesn't create lasting enterprise value. A good attorney will make this case clearly.</p>
+      </div>
+
+      <div class="callout">
+        <strong>The childcare point:</strong> Your spouse watching the kids on weekends so you could shoot is a contribution to the <em>household</em>, not to the business. Every working parent relies on their partner &mdash; that doesn't make the partner a business co-owner. Your attorney will know how to frame this.
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: THE HOUSE -->
+  <section>
+    <div class="container">
+      <div class="section-label"><span class="dot"></span> The House</div>
+      <h2>$258,000 in Equity &mdash; And Your Kids Strengthen Your Position</h2>
+
+      <table class="info-table">
+        <tr><td>Home value</td><td>~$750,000</td></tr>
+        <tr><td>Mortgage owed</td><td>~$492,000</td></tr>
+        <tr class="highlight-row"><td>Your equity</td><td>~$258,000 total</td></tr>
+        <tr><td>50/50 split would be</td><td>~$129,000 each</td></tr>
+      </table>
+
+      <p>Here's what works in your favor if you want to keep the house:</p>
+
+      <div class="card good-news">
+        <div class="card-label">Strong Position</div>
+        <p>You have <strong>three young children</strong> (ages 5, 7, and 9). Colorado courts strongly favor keeping kids in their home for stability. If you have primary or equal custody, you are well-positioned to argue for keeping the house.</p>
+        <p style="margin-bottom:0">You could also explore a <strong>trade</strong> &mdash; for example, keeping the house in exchange for a larger share of retirement accounts going to your spouse. This is where creative negotiation matters.</p>
+      </div>
+
+      <div class="card warning">
+        <p><strong>The challenge:</strong> Can you qualify for a $492,000 mortgage refinance on $83,000 income? That's tight. But lenders can count child support as income after 6+ months of receiving it, which may help you qualify. This is something to discuss with a mortgage broker early in the process.</p>
+        <p style="margin-bottom:0">If refinancing isn't possible, you might negotiate to stay in the home for a set period (while the kids are young) before selling, or to have your spouse remain on the mortgage while you make payments.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: PERA -->
+  <section>
+    <div class="container">
+      <div class="section-label"><span class="dot"></span> The PERA Pension</div>
+      <h2>This Could Be One of the Biggest Assets</h2>
+
+      <p>You mentioned a PERA (Colorado Public Employees' Retirement Association) account. Since you're a self-employed photographer, this is almost certainly your spouse's pension through a government job.</p>
+
+      <div class="card golden">
+        <div class="card-label">Important</div>
+        <p>A PERA pension for someone who has worked in Colorado government for much of a 16-year marriage could be <strong>extremely valuable</strong> &mdash; potentially worth more than the house equity. It has two parts:</p>
+        <ul class="styled-list">
+          <li><strong>A defined benefit pension</strong> &mdash; guaranteed monthly income in retirement</li>
+          <li><strong>A 401(k) component</strong> &mdash; an investment account with a cash balance</li>
+        </ul>
+        <p style="margin-bottom:0">The portion that was earned during your 16-year marriage is <strong>marital property</strong> and can be divided. This gives you significant bargaining power &mdash; for example, you might trade your share of the PERA for keeping the house.</p>
+      </div>
+
+      <div class="card warning">
+        <p><strong>Critical deadline:</strong> Dividing a PERA requires a specific <strong>Domestic Relations Order (DRO)</strong> &mdash; not a regular QDRO. It <strong>must be filed within 90 days</strong> of the divorce decree being entered. Missing this deadline can mean losing your right to part of the pension.</p>
+        <p style="margin-bottom:0">Make sure your attorney knows about the PERA and the 90-day window. This is not something to handle last.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: WHAT TO DO NOW -->
+  <section>
+    <div class="container">
+      <div class="section-label"><span class="dot"></span> What To Do Now</div>
+      <h2>Your Next Steps &mdash; In Order</h2>
+
+      <ol class="numbered-list">
+        <li><strong>Get a family law attorney.</strong> Neither of you has one yet, and the first person to get good representation often sets the tone. With three kids, a PERA pension, and $258K in house equity, this is too important for DIY. Many Colorado attorneys offer free 30-minute consultations.</li>
+        <li><strong>Find out the PERA details.</strong> How many years of service does your spouse have? What's the estimated value? This could be one of the most valuable things on the table.</li>
+        <li><strong>Gather your documents.</strong> Last 3 years of tax returns, business profit &amp; loss, PERA statements (if accessible), Roth IRA and Rollover IRA statements, mortgage statement, credit card balances.</li>
+        <li><strong>Think about custody.</strong> What schedule works for you and the kids? The overnights split is the single biggest driver of child support calculations.</li>
+        <li><strong>Answer the follow-up questions below.</strong> There are just a few more things that would help paint a clearer picture.</li>
+        <li><strong>Don't move money, don't make threats, don't sign anything</strong> without your attorney reviewing it first.</li>
+      </ol>
+
+      <div class="callout-warm">
+        <strong>Jennie, you are in a stronger position than you think.</strong> You're the lower earner with three young children. Your business is protected by personal goodwill. Your spouse's higher income and PERA pension are the bigger marital assets. The house situation favors stability for your kids. You have leverage &mdash; and a good attorney will help you use it well.
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PART 2 QUESTIONNAIRE ═══════════════ -->
+  <div id="questionnaire-2" class="q-section">
+    <div class="q-header">
+      <div class="section-label"><span class="dot"></span> A Few More Questions</div>
+      <h2>Follow-Up Questions</h2>
+      <p>These will help fill in the remaining gaps. Same as before &mdash; your answers save automatically.</p>
+    </div>
+
+    <div class="progress-bar-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill-2"></div></div>
+      <div class="progress-text" id="progress-text-2">0 / 6</div>
+    </div>
+
+    <!-- FQ1 -->
+    <div class="q-card" data-q="101" data-set="2">
+      <div class="q-number">Question 1 of 6</div>
+      <div class="q-question">Whose PERA is it?</div>
+      <div class="q-why">We're almost certain it's your spouse's, since you're self-employed. But we want to confirm, because PERA is likely one of the most valuable marital assets.</div>
+      <div class="radio-group" data-key="pera_owner">
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="fq1" value="spouse">
+          <div class="radio-dot"></div>
+          <span>My spouse's</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="fq1" value="mine">
+          <div class="radio-dot"></div>
+          <span>Mine (from a previous job)</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="fq1" value="both">
+          <div class="radio-dot"></div>
+          <span>We both have one</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="fq1" value="unsure">
+          <div class="radio-dot"></div>
+          <span>I'm not sure</span>
+        </label>
+      </div>
+      <div class="q-nav">
+        <span></span>
+        <button class="btn btn-primary" onclick="nextQ(101,2)">Next</button>
+      </div>
+    </div>
+
+    <!-- FQ2 -->
+    <div class="q-card" data-q="102" data-set="2">
+      <div class="q-number">Question 2 of 6</div>
+      <div class="q-question">Whose Roth IRA and Rollover IRA are they?</div>
+      <div class="q-why">Retirement accounts earned during the marriage are marital property. We need to know whose name is on each one to understand the full picture.</div>
+      <div class="radio-group" data-key="ira_owner">
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="fq2" value="mine">
+          <div class="radio-dot"></div>
+          <span>Both are mine</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="fq2" value="spouse">
+          <div class="radio-dot"></div>
+          <span>Both are my spouse's</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="fq2" value="split">
+          <div class="radio-dot"></div>
+          <span>One is mine, one is theirs</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="fq2" value="unsure">
+          <div class="radio-dot"></div>
+          <span>I'm not sure</span>
+        </label>
+      </div>
+      <div class="q-nav">
+        <button class="btn btn-secondary" onclick="prevQ(102,2)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(102,2)">Next</button>
+      </div>
+    </div>
+
+    <!-- FQ3 -->
+    <div class="q-card" data-q="103" data-set="2">
+      <div class="q-number">Question 3 of 6</div>
+      <div class="q-question">What custody arrangement are you hoping for?</div>
+      <div class="q-why">The overnights split is the single biggest factor in child support calculations. It also affects who can argue for keeping the house.</div>
+      <div class="radio-group" data-key="custody_preference">
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="fq3" value="primary_me">
+          <div class="radio-dot"></div>
+          <span>Primary custody with me (kids with me most nights)</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="fq3" value="5050">
+          <div class="radio-dot"></div>
+          <span>50/50 shared custody</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="fq3" value="primary_them">
+          <div class="radio-dot"></div>
+          <span>Primary custody with them</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="fq3" value="unsure">
+          <div class="radio-dot"></div>
+          <span>I haven't decided yet</span>
+        </label>
+      </div>
+      <div class="q-nav">
+        <button class="btn btn-secondary" onclick="prevQ(103,2)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(103,2)">Next</button>
+      </div>
+    </div>
+
+    <!-- FQ4 -->
+    <div class="q-card" data-q="104" data-set="2">
+      <div class="q-number">Question 4 of 6</div>
+      <div class="q-question">What does your spouse do for work?</div>
+      <div class="q-why">If they have a government job (which the PERA suggests), that means stable income, strong benefits, and a valuable pension. The job type helps us estimate the PERA's value.</div>
+      <input class="form-input" type="text" id="fq4" placeholder="e.g. Teacher, state employee, county worker..." data-key="spouse_job">
+      <div class="q-nav">
+        <button class="btn btn-secondary" onclick="prevQ(104,2)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(104,2)">Next</button>
+      </div>
+    </div>
+
+    <!-- FQ5 -->
+    <div class="q-card" data-q="105" data-set="2">
+      <div class="q-number">Question 5 of 6</div>
+      <div class="q-question">Roughly how much is the credit card and legal debt?</div>
+      <div class="q-why">Marital debts get divided too. Knowing the amounts helps us understand the full balance sheet &mdash; not just the assets.</div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <input class="form-input" type="text" id="fq5a" placeholder="Credit card debt total (e.g. $12,000)" data-key="credit_card_debt">
+        <input class="form-input" type="text" id="fq5b" placeholder="Legal debt total (e.g. $5,000)" data-key="legal_debt">
+      </div>
+      <div class="q-nav">
+        <button class="btn btn-secondary" onclick="prevQ(105,2)">Back</button>
+        <button class="btn btn-primary" onclick="nextQ(105,2)">Next</button>
+      </div>
+    </div>
+
+    <!-- FQ6 -->
+    <div class="q-card" data-q="106" data-set="2">
+      <div class="q-number">Question 6 of 6</div>
+      <div class="q-question">Who handles the kids on weekdays?</div>
+      <div class="q-why">This establishes the current caregiving pattern, which courts look at heavily when deciding custody. The status quo matters a lot.</div>
+      <div class="radio-group" data-key="weekday_care">
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="fq6" value="mostly_me">
+          <div class="radio-dot"></div>
+          <span>Mostly me</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="fq6" value="mostly_them">
+          <div class="radio-dot"></div>
+          <span>Mostly my spouse</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="fq6" value="equal">
+          <div class="radio-dot"></div>
+          <span>About equal</span>
+        </label>
+        <label class="radio-option" onclick="selectRadio(this)">
+          <input type="radio" name="fq6" value="childcare">
+          <div class="radio-dot"></div>
+          <span>Mostly daycare / school / family help</span>
+        </label>
+      </div>
+      <div class="q-nav">
+        <button class="btn btn-secondary" onclick="prevQ(106,2)">Back</button>
+        <button class="btn btn-accent" onclick="finishSet2()">Done</button>
+      </div>
+    </div>
+
+    <!-- SET 2 RESULTS -->
+    <div class="results-card" id="results-card-2">
+      <h3>All Done, Jennie</h3>
+      <p>Your follow-up answers have been saved. Share them the same way as before &mdash; copy, email, or link. We'll use these to help you even further.</p>
+      <div class="share-buttons">
+        <button class="btn btn-primary" onclick="copyToClipboard()">Copy All Answers as Text</button>
         <button class="btn btn-secondary" onclick="emailAnswers()">Send via Email</button>
         <button class="btn btn-secondary" onclick="copyLink()">Copy Shareable Link</button>
       </div>
     </div>
   </div>
 
-  <!-- ═══════════════ AI PROMPT SECTION ═══════════════ -->
+  <!-- ══════════��════ AI PROMPT SECTION ═══════════════ -->
   <section>
     <div class="container">
       <div class="section-label"><span class="dot"></span> Keep Researching</div>
       <h2>Use AI to Help You</h2>
-      <p>You can paste the text below into <a href="https://chatgpt.com" target="_blank" style="color:var(--primary);font-weight:500">ChatGPT</a> or <a href="https://claude.ai" target="_blank" style="color:var(--primary);font-weight:500">Claude</a> (both free). It already includes your situation so the AI can help you ask the right questions.</p>
+      <p>You can paste the text below into <a href="https://chatgpt.com" target="_blank" style="color:var(--primary);font-weight:500">ChatGPT</a> or <a href="https://claude.ai" target="_blank" style="color:var(--primary);font-weight:500">Claude</a> (both free). It already includes your situation so the AI can jump right in and help.</p>
 
       <div class="prompt-box" id="ai-prompt">I'm going through a divorce in Colorado and I need help understanding my financial situation. Here's my background:
 
-- I own a wedding photography LLC in Denver, Colorado
-- The business is named after me and I am the sole owner
-- I take all photos and do all editing myself — it's a one-person operation
+- I own a wedding photography LLC in Denver, Colorado, named after me
+- I am the sole owner, take all photos, and do all editing myself
 - Annual profit is approximately $83,000 and has been steady
-- I've been running the business for about 10 years
+- I've been running the business for about 10 years (started during the marriage)
+- Married in 2010 (~16 year marriage)
 - There is no prenuptial agreement
-- My spouse and I own a house together
+- My spouse earns $100,000-$150,000/year and has a PERA pension (Colorado government retirement)
+- We own a house together worth ~$750,000 with ~$492,000 mortgage (~$258,000 equity)
+- We have 3 children ages 9, 7, and 5
+- Other assets include: PERA, Roth IRA, Rollover IRA, a car
+- Debts include credit card and legal debt
+- My spouse was my second photographer for the first 2 years of the business
+- The situation is tense but manageable
+- Neither of us has hired a lawyer yet
 
-I've learned that Colorado is an equitable distribution state (not community property) and that my business likely qualifies as "personal goodwill" since clients hire me specifically, the business bears my name, and there's no transferable value without me.
+I've learned that:
+- Colorado is an equitable distribution state (not community property)
+- My business likely qualifies as "personal goodwill" (not divisible)
+- I'm the lower earner, so I may receive spousal maintenance and will receive child support
+- The PERA pension (marital portion) is divisible and may be very valuable
+- There's a 90-day deadline after divorce decree to file the PERA Domestic Relations Order
 
 Can you help me understand:
 1. What questions should I ask a divorce attorney in my first consultation?
-2. How might spousal maintenance (alimony) work given my income level?
-3. What documents should I be gathering right now?
-4. What should I absolutely NOT do during this process?
-5. How does the house division typically work when both names are on it?
+2. How might child support work with 3 kids and our income levels?
+3. What are my realistic options for keeping the house?
+4. How should I think about trading PERA pension value for house equity?
+5. What documents should I gather right now?
+6. What should I absolutely NOT do during this process?
 
-Please ask me follow-up questions if you need more details to give me accurate guidance. I'm new to all of this and want to make informed decisions.</div>
+Please ask me follow-up questions if you need more details. I want to make informed decisions.</div>
 
       <button class="btn btn-primary copy-prompt-btn" onclick="copyPrompt()">Copy This Prompt</button>
     </div>
   </section>
 
   <footer>
-    <p>Made with care. This is general information, not legal advice.<br>Please consult a Colorado family law attorney for guidance specific to your situation.</p>
+    <p>Made with care by someone who cares about you.<br>This is general information, not legal advice. Please consult a Colorado family law attorney for guidance specific to your situation.</p>
   </footer>
 
 </div>
@@ -1240,7 +1735,6 @@ document.getElementById('pw-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') checkPassword();
 });
 
-// Auto-login if already authenticated this session
 if (sessionStorage.getItem('jg_auth') === '1') {
   document.getElementById('password-screen').style.display = 'none';
   const main = document.getElementById('main-content');
@@ -1249,25 +1743,49 @@ if (sessionStorage.getItem('jg_auth') === '1') {
   window.addEventListener('DOMContentLoaded', () => { loadAnswers(); checkHashForAnswers(); });
 }
 
+// ─── NAV HIGHLIGHTING ───
+const navPart1 = document.getElementById('nav-part1');
+const navPart2 = document.getElementById('nav-part2');
+
+window.addEventListener('scroll', () => {
+  const part2Top = document.getElementById('part2-start').getBoundingClientRect().top;
+  if (part2Top < 200) {
+    navPart1.classList.remove('active');
+    navPart2.classList.add('active');
+  } else {
+    navPart1.classList.add('active');
+    navPart2.classList.remove('active');
+  }
+});
+
 // ─── QUESTIONNAIRE STATE ───
-const TOTAL_Q = 13;
-let currentQ = 1;
+const SET1_TOTAL = 13;
+const SET2_TOTAL = 6;
 let answers = {};
 
-function updateProgress() {
-  const answered = Object.keys(answers).length;
-  document.getElementById('progress-fill').style.width = (answered / TOTAL_Q * 100) + '%';
-  document.getElementById('progress-text').textContent = answered + ' / ' + TOTAL_Q;
+function updateProgress(set) {
+  if (set === 1) {
+    const set1Keys = ['marriage_year','business_timing','spouse_helped','marital_funds_used','spouse_sacrifice','spouse_income','house_value','mortgage_owed','house_title','other_assets','debts','amicability','children','lawyer_status'];
+    const count = set1Keys.filter(k => answers[k]).length;
+    document.getElementById('progress-fill-1').style.width = (count / SET1_TOTAL * 100) + '%';
+    document.getElementById('progress-text-1').textContent = count + ' / ' + SET1_TOTAL;
+  } else {
+    const set2Keys = ['pera_owner','ira_owner','custody_preference','spouse_job','credit_card_debt','legal_debt','weekday_care'];
+    const count = set2Keys.filter(k => answers[k]).length;
+    document.getElementById('progress-fill-2').style.width = (count / SET2_TOTAL * 100) + '%';
+    document.getElementById('progress-text-2').textContent = Math.min(count, SET2_TOTAL) + ' / ' + SET2_TOTAL;
+  }
 }
 
-function showQ(n) {
-  document.querySelectorAll('.q-card').forEach(c => c.classList.remove('active'));
-  const card = document.querySelector(`.q-card[data-q="${n}"]`);
+function showQ(n, set) {
+  const setId = set === 1 ? 'questionnaire-1' : 'questionnaire-2';
+  const container = document.getElementById(setId);
+  container.querySelectorAll('.q-card').forEach(c => c.classList.remove('active'));
+  const card = container.querySelector(`.q-card[data-q="${n}"]`);
   if (card) {
     card.classList.add('active');
     card.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
-  currentQ = n;
 }
 
 function saveAnswer(key, value) {
@@ -1275,19 +1793,16 @@ function saveAnswer(key, value) {
     answers[key] = value.toString().trim();
   }
   localStorage.setItem('jg_answers', JSON.stringify(answers));
-  updateProgress();
+  updateProgress(1);
+  updateProgress(2);
 }
 
 function collectCurrentAnswers(q) {
   const card = document.querySelector(`.q-card[data-q="${q}"]`);
   if (!card) return;
-
-  // Collect from inputs
   card.querySelectorAll('.form-input, .form-textarea, .form-select').forEach(el => {
     if (el.dataset.key && el.value) saveAnswer(el.dataset.key, el.value);
   });
-
-  // Collect from radio groups
   card.querySelectorAll('.radio-group').forEach(group => {
     const key = group.dataset.key;
     const checked = group.querySelector('input[type="radio"]:checked');
@@ -1295,21 +1810,30 @@ function collectCurrentAnswers(q) {
   });
 }
 
-function nextQ(q) {
+function nextQ(q, set) {
   collectCurrentAnswers(q);
-  if (q < TOTAL_Q) showQ(q + 1);
+  showQ(q + 1, set);
 }
 
-function prevQ(q) {
+function prevQ(q, set) {
   collectCurrentAnswers(q);
-  if (q > 1) showQ(q - 1);
+  showQ(q - 1, set);
 }
 
-function finishQ() {
-  collectCurrentAnswers(TOTAL_Q);
-  document.querySelectorAll('.q-card').forEach(c => c.classList.remove('active'));
-  document.getElementById('results-card').classList.add('active');
-  document.getElementById('results-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+function finishSet1() {
+  collectCurrentAnswers(13);
+  const container = document.getElementById('questionnaire-1');
+  container.querySelectorAll('.q-card').forEach(c => c.classList.remove('active'));
+  document.getElementById('results-card-1').classList.add('active');
+  document.getElementById('results-card-1').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function finishSet2() {
+  collectCurrentAnswers(106);
+  const container = document.getElementById('questionnaire-2');
+  container.querySelectorAll('.q-card').forEach(c => c.classList.remove('active'));
+  document.getElementById('results-card-2').classList.add('active');
+  document.getElementById('results-card-2').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 // ─── RADIO SELECTION ───
@@ -1334,20 +1858,15 @@ function showConditional(id, label, triggerValue) {
 function loadAnswers() {
   const saved = localStorage.getItem('jg_answers');
   if (saved) {
-    try {
-      answers = JSON.parse(saved);
-    } catch(e) { answers = {}; }
+    try { answers = JSON.parse(saved); } catch(e) { answers = {}; }
   }
 
-  // Restore values to form elements
   document.querySelectorAll('[data-key]').forEach(el => {
     const val = answers[el.dataset.key];
     if (!val) return;
-
     if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') {
       el.value = val;
     }
-
     if (el.classList.contains('radio-group')) {
       const radio = el.querySelector(`input[value="${val}"]`);
       if (radio) {
@@ -1357,8 +1876,10 @@ function loadAnswers() {
     }
   });
 
-  updateProgress();
-  showQ(1);
+  updateProgress(1);
+  updateProgress(2);
+  showQ(1, 1);
+  showQ(101, 2);
 }
 
 // ─── SHARE FUNCTIONS ───
@@ -1380,19 +1901,37 @@ function formatAnswers() {
     amicability: 'Situation tone',
     children: 'Children',
     children_details: 'Children details',
-    lawyer_status: 'Lawyer status'
+    lawyer_status: 'Lawyer status',
+    pera_owner: 'PERA belongs to',
+    ira_owner: 'IRA accounts belong to',
+    custody_preference: 'Custody preference',
+    spouse_job: 'Spouse occupation',
+    credit_card_debt: 'Credit card debt',
+    legal_debt: 'Legal debt',
+    weekday_care: 'Weekday childcare'
   };
 
-  let text = "JENNY'S DIVORCE QUESTIONNAIRE ANSWERS\n";
-  text += "━".repeat(40) + "\n\n";
+  let text = "JENNIE'S DIVORCE QUESTIONNAIRE ANSWERS\n";
+  text += String.fromCharCode(9473).repeat(40) + "\n\n";
 
-  for (const [key, label] of Object.entries(labels)) {
-    if (answers[key]) {
-      text += `${label}: ${answers[key]}\n`;
+  let section = "PART 1";
+  text += section + "\n";
+  const part1Keys = ['marriage_year','business_timing','spouse_helped','spouse_help_details','marital_funds_used','marital_funds_details','spouse_sacrifice','spouse_income','house_value','mortgage_owed','house_title','other_assets','debts','amicability','children','children_details','lawyer_status'];
+
+  for (const key of part1Keys) {
+    if (answers[key]) text += `${labels[key]}: ${answers[key]}\n`;
+  }
+
+  const part2Keys = ['pera_owner','ira_owner','custody_preference','spouse_job','credit_card_debt','legal_debt','weekday_care'];
+  const hasPart2 = part2Keys.some(k => answers[k]);
+  if (hasPart2) {
+    text += "\nPART 2 (FOLLOW-UP)\n";
+    for (const key of part2Keys) {
+      if (answers[key]) text += `${labels[key]}: ${answers[key]}\n`;
     }
   }
 
-  text += "\n" + "━".repeat(40);
+  text += "\n" + String.fromCharCode(9473).repeat(40);
   text += "\nBusiness: Wedding photography LLC, sole owner";
   text += "\nAnnual profit: ~$83,000 (steady)";
   text += "\nYears in business: ~10";
@@ -1407,9 +1946,8 @@ function encodeAnswers() {
 }
 
 function decodeAnswers(hash) {
-  try {
-    return JSON.parse(decodeURIComponent(escape(atob(hash))));
-  } catch(e) { return null; }
+  try { return JSON.parse(decodeURIComponent(escape(atob(hash)))); }
+  catch(e) { return null; }
 }
 
 function checkHashForAnswers() {
@@ -1417,7 +1955,7 @@ function checkHashForAnswers() {
   if (hash && hash.startsWith('a=')) {
     const decoded = decodeAnswers(hash.slice(2));
     if (decoded) {
-      answers = decoded;
+      answers = { ...answers, ...decoded };
       localStorage.setItem('jg_answers', JSON.stringify(answers));
       loadAnswers();
     }
@@ -1425,27 +1963,23 @@ function checkHashForAnswers() {
 }
 
 function copyToClipboard() {
-  const text = formatAnswers();
-  navigator.clipboard.writeText(text).then(() => showToast('Copied! Paste it in a text message.'));
+  navigator.clipboard.writeText(formatAnswers()).then(() => showToast('Copied! Paste it in a text message.'));
 }
 
 function emailAnswers() {
-  const text = formatAnswers();
   const subject = encodeURIComponent("My answers from the guide");
-  const body = encodeURIComponent(text);
+  const body = encodeURIComponent(formatAnswers());
   window.open(`mailto:?subject=${subject}&body=${body}`, '_self');
   showToast('Opening email...');
 }
 
 function copyLink() {
-  const encoded = encodeAnswers();
-  const url = window.location.origin + window.location.pathname + '#a=' + encoded;
+  const url = window.location.origin + window.location.pathname + '#a=' + encodeAnswers();
   navigator.clipboard.writeText(url).then(() => showToast('Link copied! Send it to your friend.'));
 }
 
 function copyPrompt() {
-  const text = document.getElementById('ai-prompt').textContent;
-  navigator.clipboard.writeText(text).then(() => showToast('Prompt copied! Paste it into ChatGPT or Claude.'));
+  navigator.clipboard.writeText(document.getElementById('ai-prompt').textContent).then(() => showToast('Prompt copied! Paste it into ChatGPT or Claude.'));
 }
 
 function showToast(msg) {
@@ -1461,15 +1995,9 @@ document.addEventListener('DOMContentLoaded', () => {
     loadAnswers();
     checkHashForAnswers();
   }
-
-  // Auto-save on any input change
   document.querySelectorAll('.form-input, .form-textarea, .form-select').forEach(el => {
-    el.addEventListener('change', () => {
-      if (el.dataset.key) saveAnswer(el.dataset.key, el.value);
-    });
-    el.addEventListener('input', () => {
-      if (el.dataset.key) saveAnswer(el.dataset.key, el.value);
-    });
+    el.addEventListener('change', () => { if (el.dataset.key) saveAnswer(el.dataset.key, el.value); });
+    el.addEventListener('input', () => { if (el.dataset.key) saveAnswer(el.dataset.key, el.value); });
   });
 });
 </script>
